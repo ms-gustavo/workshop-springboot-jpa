@@ -1,13 +1,14 @@
 package com.educandoweb.course.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.educandoweb.course.entities.Order;
 import com.educandoweb.course.repositories.OrderRepository;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class OrderService {
@@ -20,8 +21,8 @@ public class OrderService {
 	}
 	
 	public Order findById(Long id) {
-		Optional<Order> obj = repository.findById(id);
-		return obj.get();
+		return repository.findById(id)
+		        .orElseThrow(() -> new EntityNotFoundException ("Order not found."));
 	}
 	
 }
