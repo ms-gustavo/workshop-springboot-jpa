@@ -24,4 +24,8 @@ public class UserService {
 	        .orElseThrow(() -> new EntityNotFoundException ("User not found."));
 	}
 
+	public User insert(User obj) {
+		return repository.save(obj);
+	}
+	
 }
