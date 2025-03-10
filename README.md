@@ -4,11 +4,21 @@
   <h2>Estrutura do Projeto</h2>
     <ul>
         <li><strong>src/main/java/com/educandoweb/course</strong>: Código-fonte principal do projeto.</li>
-        <li><strong>entities</strong>: Classes de modelo, como <code>Category</code>, <code>Order</code>, <code>Product</code>, <code>User</code>.</li>
+        <li><strong>entities</strong>: Classes de modelo, como <code>Category</code>, <code>Order</code>, <code>Product</code>, <code>User</code>, <code>Payment</code>.</li>
         <li><strong>repositories</strong>: Interfaces do Spring Data JPA para acesso aos dados.</li>
         <li><strong>services</strong>: Classes responsáveis pela lógica de negócios.</li>
         <li><strong>resources</strong>: Controladores REST que expõem as APIs.</li>
         <li><strong>config</strong>: Classe de configuração para testes com dados mockados.</li>
+    </ul>
+
+<h2>Relacionamentos entre Entidades</h2>
+    <p>O projeto utiliza anotações do JPA para definir os relacionamentos entre as entidades:</p>
+    <ul>
+        <li><strong>User</strong> possui um relacionamento <code>@OneToMany</code> com <strong>Order</strong>, pois um usuário pode ter vários pedidos.</li>
+        <li><strong>Order</strong> possui um relacionamento <code>@ManyToOne</code> com <strong>User</strong> e um relacionamento <code>@OneToMany</code> com <strong>OrderItem</strong>.</li>
+        <li><strong>OrderItem</strong> é uma entidade intermediária entre <strong>Order</strong> e <strong>Product</strong>, representando uma relação <code>@ManyToOne</code> para ambos.</li>
+        <li><strong>Product</strong> possui um relacionamento <code>@ManyToMany</code> com <strong>Category</strong>, utilizando uma tabela intermediária para a associação.</li>
+        <li><strong>Payment</strong> possui um relacionamento <code>@OneToOne</code> com <strong>Order</strong>, pois cada pedido pode ter no máximo um pagamento associado.</li>
     </ul>
     
   <h2>Dependências</h2>
