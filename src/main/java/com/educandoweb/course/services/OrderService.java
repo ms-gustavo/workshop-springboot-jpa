@@ -7,8 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.educandoweb.course.entities.Order;
 import com.educandoweb.course.repositories.OrderRepository;
-
-import jakarta.persistence.EntityNotFoundException;
+import com.educandoweb.course.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class OrderService {
@@ -22,7 +21,7 @@ public class OrderService {
 	
 	public Order findById(Long id) {
 		return repository.findById(id)
-		        .orElseThrow(() -> new EntityNotFoundException ("Order not found."));
+		        .orElseThrow(() -> new ResourceNotFoundException (id));
 	}
 	
 }
